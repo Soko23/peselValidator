@@ -1,13 +1,40 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pl">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pesel</title>
+    <title>Pesel validator</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    
+    <div class="input-wrapper">
+        <label for="pesel" class="label">Wprowadź pesel</label>
+        <input id="pesel" type="text" class="input">
+        <button id="button" class="button">Sprawdź</button>
+        <span id="result" class="result"></span>
+    </div>
 
+    <script src="./pesel.js"></script>
+    <script>
+        const button = document.querySelector('#button')
+        const result = document.querySelector('#result')
+
+        button.addEventListener('click', () => {
+            const pesel = document.querySelector('#pesel').value
+            const checkStatus = checkPesel(pesel)
+            result.classList.remove('error', 'success')
+            result.innerHTML = checkStatus.message
+
+            if (checkStatus.status === false) {
+                result.classList.add('error')
+            } else {
+                result.classList.add('success')
+            }
+            
+        })
+    </script>
 </body>
 </html>
